@@ -1,3 +1,4 @@
+const producerService = require('../../services/rabbitmq/producerService');
 exports.Text = async (req, res) => {
     const data = await WhatsAppInstances[req.query.key].sendTextMessage(
         req.body.id,
@@ -111,4 +112,17 @@ exports.SetStatus = async (req, res) => {
         req.body.id
     )
     return res.status(201).json({ error: false, data: data })
+}
+
+exports.BroadcastText = async (req, res) => {
+    const id = req.body.id;
+    const message = req.body.message;
+    const key = req.query.key;
+    const messageBody = {
+        key,
+        id,
+        message
+    }
+    const data = await producerService.sendMessage('meotify:send:messages',JSON.stringify(messageBody));
+    return res.status(201).json({ error: false, message: "Your message on queue." });
 }

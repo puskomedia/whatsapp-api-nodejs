@@ -21,5 +21,6 @@ router.route('/setstatus').put(keyVerify, loginVerify, controller.SetStatus)
 router
     .route('/mediabutton')
     .post(keyVerify, loginVerify, controller.MediaButton)
+router.route('/textbc').post(keyVerify, loginVerify, controller.BroadcastText)
 
 module.exports = router
