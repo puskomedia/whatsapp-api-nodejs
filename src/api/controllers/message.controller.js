@@ -118,11 +118,13 @@ exports.BroadcastText = async (req, res) => {
     const id = req.body.id;
     const message = req.body.message;
     const key = req.query.key;
+    const webhookUrl = req.body.webhook;
     const messageBody = {
         key,
         id,
-        message
+        message,
+        webhookUrl
     }
-    const data = await producerService.sendMessage('meotify:send:messages',JSON.stringify(messageBody));
+    await producerService.sendMessage('meotify:send:messages',JSON.stringify(messageBody));
     return res.status(201).json({ error: false, message: "Your message on queue." });
 }
