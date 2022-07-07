@@ -26,7 +26,7 @@ class ListenerImage {
                         });
                         const notifData = {
                             key,
-                            caption,
+                            message:caption,
                             messageType: 'IMAGE',
                             receiver: id,
                             status: 2,
