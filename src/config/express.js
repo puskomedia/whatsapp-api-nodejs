@@ -14,7 +14,8 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '../api/views'))
 global.WhatsAppInstances = {}
 
-const { init } = require('../message_broker/Consumer');
+const consumerText = require('../message_broker/Consumer');
+const consumerImage = require('../message_broker/ConsumerImage');
 
 const routes = require('../api/routes/')
 if (protectRoutes) {
@@ -23,6 +24,7 @@ if (protectRoutes) {
 app.use('/', routes)
 app.use(error.handler)
 
-init();
+consumerText.init();
+consumerImage.init();
 
 module.exports = app

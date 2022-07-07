@@ -128,3 +128,22 @@ exports.BroadcastText = async (req, res) => {
     await producerService.sendMessage('meotify:send:messages',JSON.stringify(messageBody));
     return res.status(201).json({ error: false, message: "Your message on queue." });
 }
+
+exports.BroadcastImage = async (req, res) => {
+    const key = req.query.key;
+    const id = req.body.id;
+    const file = req.file;
+    const caption = req.body?.caption;
+    const webhookUrl = req.body.webhook;
+    const type = 'image'
+    const messageBody = {
+        key,
+        id,
+        file,
+        type,
+        caption,
+        webhookUrl
+    }
+    await producerService.sendMessage('meotify:send:message_images',JSON.stringify(messageBody));
+    return res.status(201).json({ error: false, message: "Your message on queue." });
+}
