@@ -16,15 +16,17 @@ global.WhatsAppInstances = {}
 
 const consumerText = require('../message_broker/Consumer');
 const consumerImage = require('../message_broker/ConsumerImage');
+const consumerDocument = require('../message_broker/ConsumerDocument');
 
 const routes = require('../api/routes/')
 if (protectRoutes) {
     app.use(tokenCheck)
 }
-app.use('/', routes)
-app.use(error.handler)
+app.use('/', routes);
+app.use(error.handler);
 
 consumerText.init();
 consumerImage.init();
+consumerDocument.init();
 
 module.exports = app

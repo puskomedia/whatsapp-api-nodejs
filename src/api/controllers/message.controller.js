@@ -163,6 +163,6 @@ exports.BroadcastDocument = async (req, res) => {
         filename,
         webhookUrl
     }
-    await producerService.sendMessage('meotify:send:message_images',JSON.stringify(messageBody));
+    await producerService.sendMessage('meotify:send:message_documents',JSON.stringify(messageBody));
     return res.status(201).json({ error: false, message: "Your message on queue." });
 }
