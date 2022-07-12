@@ -152,7 +152,7 @@ exports.BroadcastDocument = async (req, res) => {
     const key = req.query.key;
     const id = req.body.id;
     const file = req.file;
-    const filename = req.body.filename;
+    const filename = Date.now();
     const webhookUrl = req.body.webhook;
     const type = 'document'
     const messageBody = {
